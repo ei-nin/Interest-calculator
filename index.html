@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="boxone field">
+                <p>Your balance</p>
+                <input type=number placeholder="1234.56" id="balance"/>
+           </div>
+          <div class="boxtwo field">
+                <p>With interest</p>
+                <input disabled id="interested">
+           </div>
+           <div class="boxthree field">
+               <p>Interest rate</p>
+               <input disabled id="rate">
+           </div>
+           <div class="Button field">
+               <button id="calculate">Calculate</button>
+           </div>
+        </div>
+    </body>
+<!--Creates the input boxes & button-->
+
+    <script>
+        const balance = document.getElementById("balance")
+        const interested = document.getElementById("interested")
+        const rate = document.getElementById("rate")
+        const calculate = document.getElementById("calculate")
+//Gives the input an identity
+
+        calculate.addEventListener('click', () => {
+        let currentBalance = balance.value
+        let interestRate = 0.0
+        
+        interestRate = calculateInterest(currentBalance)
+        rate.value = interestRate
+
+        interested.value = currentBalance*(1+ interestRate)
+        rate.value = interestRate
+    })
+//Value + interest (interested value) is balance x1 + interest rate
+
+
+    function calculateInterest(balance){
+            let interestRate = 0
+            //To add any other superior balance brackets, such as balance >10000, do so here.
+            if (balance >1000){
+                interestRate = 0.03
+            }
+            else if (balance >500){
+                interestRate = 0.02
+            }
+            else if (balance >100){
+                interestRate = 0.01
+            }
+            
+            return interestRate
+        }
+// Base interest rate is 0, then eliminate in decreasing value since >500 is also >100
+//e.g. 600 is more than 100, as well as more than 500. 
+
+    </script>
+</html>
